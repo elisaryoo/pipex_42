@@ -6,7 +6,7 @@
 #    By: eryoo <eryoo@student.42sp.org.br>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 20:52:43 by eryoo             #+#    #+#              #
-#    Updated: 2022/01/05 23:19:33 by eryoo            ###   ########.fr        #
+#    Updated: 2022/01/07 17:33:24 by eryoo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ BIN = /bin/rm -rf
 INCLUDES = include/pipex.h
 
 SRCS= srcs/pipex.c \
-		srcs/pipex_utils.c
+		srcs/pipex_utils.c \
+		srcs/pipex_utils_two.c
 
 OBJS = $(SRCS:.c=.o)
 
