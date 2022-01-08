@@ -6,7 +6,7 @@
 /*   By: eryoo <eryoo@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 20:58:42 by eryoo             #+#    #+#             */
-/*   Updated: 2022/01/07 20:28:07 by eryoo            ###   ########.fr       */
+/*   Updated: 2022/01/08 07:27:40 by eryoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,23 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
+char	*ft_strjoin(const char *s1, const char *s2)
+{
+	char	*new_str;
+	size_t	len;
+	size_t	i;
 
-
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	len = ft_strlen(s1) + ft_strlen(s2);
+	new_str = malloc(len + 1);
+	if (new_str == NULL)
+		return (NULL);
+	i = 0;
+	while (*s1)
+		new_str[i++] = *s1++;
+	while (*s2)
+		new_str[i++] = *s2++;
+	new_str[i] = '\0';
+	return (new_str);
+}
