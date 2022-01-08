@@ -6,7 +6,7 @@
 /*   By: eryoo <eryoo@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 20:52:30 by eryoo             #+#    #+#             */
-/*   Updated: 2022/01/08 12:10:59 by eryoo            ###   ########.fr       */
+/*   Updated: 2022/01/08 13:17:35 by eryoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,17 @@ typedef struct s_pipex
 	int fd[2];
 	char **inputs;
 	char **paths;
+	char *join_paths;
 	char *join_command_one;
 	char **command_one;
+	char *command_one_path;
 	char *join_command_two;
 	char **command_two;
+	char *command_two_path;
 } t_pipex;
 
-int				deal_child_one (t_pipex *pipex, char **envp, int *fd);
-int				deal_child_two (t_pipex *pipex, char **envp, int *fd);
+int				deal_child_one (t_pipex *pipex, char **envp);
+int				deal_child_two (t_pipex *pipex, char **envp);
 void			check_paths (t_pipex *pipex, char **envp);
 void			check_empty_spaces(t_pipex *pipex);
 void			find_command_one (t_pipex *pipex);
