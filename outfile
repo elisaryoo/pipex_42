@@ -1,0 +1,7 @@
+total 44
+-rw-r--r-- 1 eryoo eryoo  1384 Jan  8 19:00 Makefile
+drwxr-xr-x 2 eryoo eryoo  4096 Jan  5 20:52 include
+-rw-r--r-- 1 eryoo eryoo   458 Jan  8 10:15 infile
+-rw-r--r-- 1 eryoo eryoo     0 Jan  8 19:06 outfile
+-rwxr-xr-x 1 eryoo eryoo 28088 Jan  8 19:05 pipex
+drwxr-xr-x 2 eryoo eryoo  4096 Jan  8 19:05 srcs
