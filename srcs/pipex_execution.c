@@ -6,7 +6,7 @@
 /*   By: eryoo <eryoo@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 12:14:11 by eryoo             #+#    #+#             */
-/*   Updated: 2022/01/08 16:40:19 by eryoo            ###   ########.fr       */
+/*   Updated: 2022/01/08 17:29:27 by eryoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	find_command_one(t_pipex *pipex)
 {
 	int	i;
 
-	//check_empty_spaces(pipex);
 	pipex->command_one = ft_split(pipex->inputs[2], ' ');
 	i = 0;
 	while (pipex->paths[i])
@@ -54,7 +53,6 @@ void	find_command_two(t_pipex *pipex)
 	int		i;
 	char	*join_paths;
 
-	//check_empty_spaces(pipex);
 	pipex->command_two = ft_split(pipex->inputs[3], ' ');
 	i = 0;
 	while (pipex->paths[i])
@@ -75,7 +73,7 @@ void	execute_command_one(t_pipex *pipex, char **envp)
 {
 	if (execve(pipex->command_one_path, pipex->command_one, envp) == -1)
 	{
-		perror("Error 6: Command 1 not working");
+		perror("Error: cmd1 not working");
 		exit(1);
 	}
 }
@@ -84,7 +82,7 @@ void	execute_command_two(t_pipex *pipex, char **envp)
 {
 	if (execve(pipex->command_two_path, pipex->command_two, envp) == -1)
 	{
-		perror("Error 7: Command 2 not working");
+		perror("Error: cmd2 not working");
 		exit(1);
 	}
 }

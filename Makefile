@@ -6,7 +6,7 @@
 #    By: eryoo <eryoo@student.42sp.org.br>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 20:52:43 by eryoo             #+#    #+#              #
-#    Updated: 2022/01/08 12:30:28 by eryoo            ###   ########.fr        #
+#    Updated: 2022/01/08 17:28:30 by eryoo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,10 @@ clean:
 
 fclean: 
 		@$(RM) $(OBJS)
+		@$(RM) $(NAME)
+
+norminette:
+		norminette include srcs 
 
 re: 
 	fclean all

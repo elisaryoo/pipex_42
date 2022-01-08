@@ -6,7 +6,7 @@
 /*   By: eryoo <eryoo@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 18:15:44 by eryoo             #+#    #+#             */
-/*   Updated: 2022/01/08 16:58:00 by eryoo            ###   ########.fr       */
+/*   Updated: 2022/01/08 17:24:25 by eryoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	child_one_process(t_pipex *pipex, char **envp)
 	pipex->child_one = fork();
 	if (pipex->child_one < 0)
 	{
-		perror("Error 2: ");
+		perror("Error: ");
 		exit(EXIT_FAILURE);
 	}
 	if (pipex->child_one == 0)
@@ -29,7 +29,7 @@ void	child_two_process(t_pipex *pipex, char **envp)
 	pipex->child_two = fork();
 	if (pipex->child_two < 0)
 	{
-		perror("Error 3: ");
+		perror("Error: ");
 		exit(EXIT_FAILURE);
 	}
 	if (pipex->child_two == 0)
@@ -43,7 +43,7 @@ int	deal_child_one(t_pipex *pipex, char **envp)
 	infile = open(pipex->inputs[1], O_RDONLY, 0777);
 	if (infile == -1)
 	{
-		perror("Error 5: infile");
+		perror("Error: file2 ");
 		exit(EXIT_FAILURE);
 	}
 	dup2(infile, STDIN_FILENO);
@@ -62,7 +62,7 @@ int	deal_child_two(t_pipex *pipex, char **envp)
 	outfile = open(pipex->inputs[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (outfile == -1)
 	{
-		perror("Error 4: outfile");
+		perror("Error: file1 ");
 		exit(EXIT_FAILURE);
 	}
 	dup2(pipex->fd[0], STDIN_FILENO);
@@ -87,7 +87,7 @@ int	main(int argc, char **argv, char **envp)
 		pipex.inputs = argv;
 		if (pipe(pipex.fd) == -1)
 		{
-			perror("Error 1: ");
+			perror("Error: ");
 			exit(EXIT_FAILURE);
 		}
 		child_one_process(&pipex, envp);
