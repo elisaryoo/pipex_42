@@ -6,7 +6,7 @@
 /*   By: eryoo <eryoo@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 20:58:42 by eryoo             #+#    #+#             */
-/*   Updated: 2022/01/07 17:22:10 by eryoo            ###   ########.fr       */
+/*   Updated: 2022/01/07 20:28:07 by eryoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,30 +34,35 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 
-char	*ft_strnstr(const char *big, const char *little, size_t len)
+char	*ft_strdup(const char *s1)
 {
-	size_t	b_size;
-	size_t	l_size;
-	size_t	s_size;
+	char	*dst;
 
-	b_size = ft_strlen(big);
-	l_size = ft_strlen(little);
-	if (l_size == 0)
-		return ((char *)big);
-	else if (l_size > b_size)
+	dst = (void *)malloc(ft_strlen(s1) + 1);
+	if (!dst)
+		return (0);
+	ft_memcpy(dst, s1, ft_strlen(s1) + 1);
+	return (dst);
+}
+
+void	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	unsigned char	*dest;
+	unsigned char	*source;
+	size_t			i;
+
+	dest = (unsigned char *)dst;
+	source = (unsigned char *)src;
+	i = 0;
+	if (!dest && !source)
 		return (NULL);
-	if (b_size > len)
-		s_size = len;
-	else
-		s_size = b_size;
-	while (l_size <= s_size)
+	while (i < n)
 	{
-		if (!ft_strncmp(big, little, l_size))
-			return ((char *)big);
-		big++;
-		s_size--;
+		dest[i] = source[i];
+		i++;
 	}
-	return (NULL);
+	dst = dest;
+	return (dst);
 }
 
 
