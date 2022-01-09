@@ -6,7 +6,7 @@
 /*   By: eryoo <eryoo@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 12:14:11 by eryoo             #+#    #+#             */
-/*   Updated: 2022/01/09 11:18:26 by eryoo            ###   ########.fr       */
+/*   Updated: 2022/01/09 13:08:24 by eryoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,13 @@ void	find_command_one(t_pipex *pipex)
 		{
 			pipex->command_one_path = pipex->join_command_one; //command_one_path = usr/bin/ls 
 			pipex->command_one_flag = 1;
-			//free(pipex->join_command_one);
 			break;
 		}
 		free(pipex->join_paths);
 		free(pipex->join_command_one);
 		i++;
 	}
-	if (pipex->command_one_flag == 0)
-	{
-		perror("Error: cmd1 not found");
-		//free(pipex->command_one_path);
-		exit(1);
-	}
+	command_one_checkage(pipex);
 }
 
 void	find_command_two(t_pipex *pipex)
@@ -79,55 +73,35 @@ void	find_command_two(t_pipex *pipex)
 		{
 			pipex->command_two_path = pipex->join_command_two;
 			pipex->command_two_flag = 1;
-			//free(pipex->join_command_two);
 			break;
 		}
 		free(pipex->join_paths);
 		free(pipex->join_command_two);
 		i++;
 	}
-	if (pipex->command_two_flag == 0)
-	{
-		perror("Error: cmd2 not found");
-		//free(pipex->command_two_path);
-		exit(1);
-	}
+	command_two_checkage(pipex);
 }
 
 void	execute_command_one(t_pipex *pipex, char **envp)
 {
-	/* if (pipex->command_one_path == NULL)
-        pipex->command_one_path = ft_strdup("/bin"); */
+	if (pipex->command_one_path == NULL)
+        pipex->command_one_path = ft_strdup("/bin"); 
 	if (execve(pipex->command_one_path, pipex->command_one, envp) == -1)
 	{
 		perror("Error 3: cmd1 not found");
-		free(pipex->command_one_path);
-		int i;
-		i = 0;
-		while (pipex->command_one[i])
-		{
-			free(pipex->command_one[i]);
-			i++;
-		}
+		free_all_one(pipex);
 		exit(1);
 	}
 }
 
 void	execute_command_two(t_pipex *pipex, char **envp)
 {
-	/* if (pipex->command_two_path == NULL)
-        pipex->command_two_path = ft_strdup("/bin"); */
+	if (pipex->command_two_path == NULL)
+        pipex->command_two_path = ft_strdup("/bin"); 
 	if (execve(pipex->command_two_path, pipex->command_two, envp) == -1)
 	{
 		perror("Error 4: cmd2 not found");
-		free(pipex->command_one_path);
-		int i;
-		i = 0;
-		while (pipex->command_two[i])
-		{
-			free(pipex->command_two[i]);
-			i++;
-		}
+		free_all_two(pipex);
 		exit(1);
 	}
 }

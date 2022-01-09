@@ -6,7 +6,7 @@
 /*   By: eryoo <eryoo@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 20:52:30 by eryoo             #+#    #+#             */
-/*   Updated: 2022/01/09 10:39:56 by eryoo            ###   ########.fr       */
+/*   Updated: 2022/01/09 11:59:08 by eryoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ void			find_command_one(t_pipex *pipex);
 void			find_command_two(t_pipex *pipex);
 void			execute_command_one(t_pipex *pipex, char **envp);
 void			execute_command_two(t_pipex *pipex, char **envp);
+void			command_one_checkage(t_pipex *pipex);
+void			command_two_checkage(t_pipex *pipex);
+void			free_all_one(t_pipex *pipex);
+void			free_all_two(t_pipex *pipex);
 void			free_ptr(char **ptr);
 
 size_t			ft_strlen(const char *s);
