@@ -6,7 +6,7 @@
 /*   By: eryoo <eryoo@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 12:14:11 by eryoo             #+#    #+#             */
-/*   Updated: 2022/01/09 16:20:34 by eryoo            ###   ########.fr       */
+/*   Updated: 2022/01/09 20:40:20 by eryoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,13 @@ void	find_command_two(t_pipex *pipex)
 void	execute_command_one(t_pipex *pipex, char **envp)
 {
 	if (pipex->command_one_path == NULL)
-		return ;
+	{
+		write(2, "Error: cmd1 not found\n", 23);
+		exit(1);
+	}
 	if (execve(pipex->command_one_path, pipex->command_one, envp) == -1)
 	{
-		perror("Error 3: cmd1 not found");
+		perror("Error: ");
 		free_all_one(pipex);
 		exit(1);
 	}
@@ -99,10 +102,13 @@ void	execute_command_one(t_pipex *pipex, char **envp)
 void	execute_command_two(t_pipex *pipex, char **envp)
 {
 	if (pipex->command_two_path == NULL)
-		return ;
+	{
+		write(2, "Error: cmd2 not found\n", 23);
+		exit(1);
+	}
 	if (execve(pipex->command_two_path, pipex->command_two, envp) == -1)
 	{
-		perror("Error 4: cmd2 not found");
+		perror("Error: ");
 		free_all_two(pipex);
 		exit(1);
 	}
