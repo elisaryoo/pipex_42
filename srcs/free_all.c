@@ -6,7 +6,7 @@
 /*   By: eryoo <eryoo@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 20:36:56 by eryoo             #+#    #+#             */
-/*   Updated: 2022/01/08 20:37:13 by eryoo            ###   ########.fr       */
+/*   Updated: 2022/01/09 09:26:40 by eryoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 void    free_ptr(char **ptr)
 {
-    int    i;
+	int    i;
 
-    i = 0;
-    while (ptr[i])
-        free(ptr[i++]);
-    free(ptr);
+	i = 0;
+	while (ptr[i])
+		free(ptr[i++]);
+	free(ptr);
 }
+

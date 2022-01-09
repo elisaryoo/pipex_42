@@ -6,7 +6,7 @@
 /*   By: eryoo <eryoo@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 18:15:44 by eryoo             #+#    #+#             */
-/*   Updated: 2022/01/08 21:35:25 by eryoo            ###   ########.fr       */
+/*   Updated: 2022/01/09 11:14:57 by eryoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	deal_child_one(t_pipex *pipex, char **envp)
 	close(pipex->fd[0]);
 	check_paths(pipex, envp);
 	find_command_one(pipex);
+	printf("%s\n", pipex->command_one_path);
 	execute_command_one(pipex, envp);
 }
 
@@ -69,6 +70,7 @@ void	deal_child_two(t_pipex *pipex, char **envp)
 	close(pipex->fd[1]);
 	check_paths(pipex, envp);
 	find_command_two(pipex);
+	printf("%s", pipex->command_two_path);
 	execute_command_two(pipex, envp);
 }
 
@@ -78,7 +80,8 @@ int	main(int argc, char **argv, char **envp)
 
 	if (argc != 5)
 	{
-		write(1, "Error, try: ./pipex infile \"cmd1\" \"cmd2\" outfile\n", 60);
+		write(1, "Error, try: ./pipex infile \"cmd1\" \"cmd2\" outfile\n", 50);
+		exit(1);
 		return (1);
 	}
 	else
@@ -96,5 +99,5 @@ int	main(int argc, char **argv, char **envp)
 		waitpid(pipex.child_one, NULL, 0);
 		waitpid(pipex.child_two, NULL, 0);
 	}
-	return (0);
+	return (0); 
 }

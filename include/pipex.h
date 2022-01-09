@@ -6,7 +6,7 @@
 /*   By: eryoo <eryoo@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 20:52:30 by eryoo             #+#    #+#             */
-/*   Updated: 2022/01/08 21:34:50 by eryoo            ###   ########.fr       */
+/*   Updated: 2022/01/09 10:39:56 by eryoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct s_pipex
 	pid_t	child_one;
 	pid_t	child_two;
 	int		fd[2];
+	int		command_one_flag;
+	int		command_two_flag;
 	char	**inputs;
 	char	**paths;
 	char	*join_paths;
