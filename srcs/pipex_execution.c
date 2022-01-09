@@ -6,7 +6,7 @@
 /*   By: eryoo <eryoo@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 12:14:11 by eryoo             #+#    #+#             */
-/*   Updated: 2022/01/08 17:29:27 by eryoo            ###   ########.fr       */
+/*   Updated: 2022/01/08 21:31:44 by eryoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,13 @@ void	find_command_one(t_pipex *pipex)
 		pipex->join_paths = ft_strjoin(pipex->paths[i], "/");
 		pipex->join_command_one = ft_strjoin(pipex->join_paths, \
 											pipex->command_one[0]);
-		free(pipex->join_paths);
 		if (access(pipex->join_command_one, F_OK) == 0)
 		{
 			pipex->command_one_path = pipex->join_command_one;
+			break;
 		}
+		free(pipex->join_paths);
+		free(pipex->join_command_one);
 		i++;
 	}
 }
@@ -52,6 +54,7 @@ void	find_command_two(t_pipex *pipex)
 {
 	int		i;
 	char	*join_paths;
+	
 
 	pipex->command_two = ft_split(pipex->inputs[3], ' ');
 	i = 0;
@@ -60,11 +63,13 @@ void	find_command_two(t_pipex *pipex)
 		pipex->join_paths = ft_strjoin(pipex->paths[i], "/");
 		pipex->join_command_two = ft_strjoin(pipex->join_paths, \
 											pipex->command_two[0]);
-		free(pipex->join_paths);
 		if (access(pipex->join_command_two, F_OK) == 0)
 		{
 			pipex->command_two_path = pipex->join_command_two;
+			break;
 		}
+		free(pipex->join_paths);
+		free(pipex->join_command_two);
 		i++;
 	}
 }
