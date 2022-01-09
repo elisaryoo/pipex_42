@@ -6,7 +6,7 @@
 /*   By: eryoo <eryoo@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 18:15:44 by eryoo             #+#    #+#             */
-/*   Updated: 2022/01/09 13:19:48 by eryoo            ###   ########.fr       */
+/*   Updated: 2022/01/09 16:18:30 by eryoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	deal_child_one(t_pipex *pipex, char **envp)
 	dup2(infile, STDIN_FILENO);
 	dup2(pipex->fd[1], STDOUT_FILENO);
 	close(pipex->fd[0]);
-	check_paths(pipex, envp);
+	check_paths(&pipex->paths_one, envp);
 	find_command_one(pipex);
 	execute_command_one(pipex, envp);
 }
@@ -67,7 +67,7 @@ void	deal_child_two(t_pipex *pipex, char **envp)
 	dup2(pipex->fd[0], STDIN_FILENO);
 	dup2(outfile, STDOUT_FILENO);
 	close(pipex->fd[1]);
-	check_paths(pipex, envp);
+	check_paths(&pipex->paths_two, envp);
 	find_command_two(pipex);
 	execute_command_two(pipex, envp);
 }
@@ -97,5 +97,5 @@ int	main(int argc, char **argv, char **envp)
 		waitpid(pipex.child_one, NULL, 0);
 		waitpid(pipex.child_two, NULL, 0);
 	}
-	return (0); 
+	return (0);
 }

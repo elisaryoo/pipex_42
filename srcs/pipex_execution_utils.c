@@ -6,7 +6,7 @@
 /*   By: eryoo <eryoo@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 11:25:17 by eryoo             #+#    #+#             */
-/*   Updated: 2022/01/09 12:40:26 by eryoo            ###   ########.fr       */
+/*   Updated: 2022/01/09 16:18:58 by eryoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	command_one_checkage(t_pipex *pipex)
 	if (pipex->command_one_flag == 0)
 	{
 		perror("Error: cmd1 not found");
-		//free_all_one(pipex);
+		free_all_one(pipex);
 		exit(1);
 	}
 }
@@ -34,50 +34,48 @@ void	command_two_checkage(t_pipex *pipex)
 
 void	free_all_one(t_pipex *pipex)
 {
-	int y;
-	int z;
-	
+	int	y;
+	int	z;
+
 	y = 0;
 	z = 0;
-	while(pipex->paths[y])
+	if (pipex->paths_one)
 	{
-		pipex->paths[y];
-		y++;
+		while (pipex->paths_one[y])
+		{
+			free(pipex->paths_one[y]);
+			y++;
+		}
+		free(pipex->paths_one);
 	}
-	//free(pipex->paths);
-	while(pipex->command_one[z])
+	while (pipex->command_one[z])
 	{
-		pipex->command_one[z];
+		free(pipex->command_one[z]);
 		z++;
 	}
-	//free(pipex->command_one);
+	free(pipex->command_one);
 }
 
 void	free_all_two(t_pipex *pipex)
 {
-	int y;
-	int z;
-	
+	int	y;
+	int	z;
+
 	y = 0;
 	z = 0;
-	while(pipex->paths[y])
+	if (pipex->paths_two)
 	{
-		pipex->paths[y];
-		y++;
+		while (pipex->paths_two[y])
+		{
+			free(pipex->paths_two[y]);
+			y++;
+		}
+		free(pipex->paths_two);
 	}
-	while(pipex->command_two[z])
+	while (pipex->command_two[z])
 	{
-		pipex->command_two[z];
+		free(pipex->command_two[z]);
 		z++;
 	}
-}
-
-void    free_ptr(char **ptr)
-{
-	int    i;
-
-	i = 0;
-	while (ptr[i])
-		free(ptr[i++]);
-	free(ptr);
+	free(pipex->command_two);
 }

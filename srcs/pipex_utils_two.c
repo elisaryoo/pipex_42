@@ -6,7 +6,7 @@
 /*   By: eryoo <eryoo@student.42sp.org.br>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 17:26:17 by eryoo             #+#    #+#             */
-/*   Updated: 2022/01/09 12:48:42 by eryoo            ###   ########.fr       */
+/*   Updated: 2022/01/09 16:27:53 by eryoo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,9 @@ static void	*free_all(char **res, size_t stop)
 char	**ft_split(const char *s, char c)
 {
 	char	**res;
-	char  **temp;
 	size_t	len;
 	size_t	words;
 	size_t	counter;
-	
 
 	if (s == NULL)
 		return (NULL);
